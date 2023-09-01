@@ -85,7 +85,6 @@ fn parallel() -> HashMap<String, usize> {
 fn time<R, F: Fn() -> R>(f: F) -> (Duration, R) {
     let start = Instant::now();
     let ret = f();
-
     (start.elapsed(), ret)
 }
 
