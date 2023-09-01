@@ -1,3 +1,10 @@
+use csv::Reader;
+use glob::glob;
+use rayon::prelude::*;
+use std::collections::HashMap;
+
+use crate::util::{Video, HEADER_RECORD};
+
 pub fn parallel() -> HashMap<String, usize> {
     glob("data/*")
         .unwrap()

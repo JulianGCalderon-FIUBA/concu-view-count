@@ -1,3 +1,9 @@
+use csv::Reader;
+use glob::glob;
+use std::collections::HashMap;
+
+use crate::util::{Video, HEADER_RECORD};
+
 pub fn sequential() -> HashMap<String, usize> {
     glob("data/*")
         .unwrap()
