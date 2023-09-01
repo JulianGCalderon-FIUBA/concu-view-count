@@ -7,7 +7,7 @@ use std::time::{Duration, Instant};
 
 use csv::{Reader, StringRecord};
 
-const HEADERS_SLICE: &[&str] = &[
+const HEADERS: &[&str] = &[
     "video_id",
     "trending_date",
     "title",
@@ -27,7 +27,7 @@ const HEADERS_SLICE: &[&str] = &[
 ];
 
 lazy_static! {
-    static ref HEADERS: StringRecord = StringRecord::from(HEADERS_SLICE);
+    static ref HEADER_RECORD: StringRecord = StringRecord::from(HEADERS);
 }
 
 #[derive(Debug, Deserialize)]
@@ -44,7 +44,7 @@ fn sequential() -> HashMap<String, usize> {
         .map(|reader| reader.into_records())
         .flatten()
         .flatten()
-        .flat_map(|row| row.deserialize::<Video>(Some(&HEADERS)))
+        .flat_map(|row| row.deserialize::<Video>(Some(&HEADER_RECORD)))
         .fold(HashMap::new(), |mut acc, video: Video| {
             let entry = acc.entry(video.channel_title).or_insert(0);
             *entry += video.views;
@@ -61,7 +61,7 @@ fn parallel() -> HashMap<String, usize> {
         .map(|reader| reader.into_records().par_bridge())
         .flatten()
         .flatten()
-        .flat_map(|row| row.deserialize::<Video>(Some(&HEADERS)))
+        .flat_map(|row| row.deserialize::<Video>(Some(&HEADER_RECORD)))
         .fold(
             || HashMap::new(),
             |mut acc, video: Video| {
