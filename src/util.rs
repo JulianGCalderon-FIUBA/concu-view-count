@@ -1,5 +1,3 @@
-use std::time::{Duration, Instant};
-
 use csv::StringRecord;
 use lazy_static::lazy_static;
 use serde::Deserialize;
@@ -31,10 +29,4 @@ lazy_static! {
 pub struct Video {
     pub channel_title: String,
     pub views: usize,
-}
-
-pub fn time<R, F: Fn() -> R>(f: F) -> (Duration, R) {
-    let start = Instant::now();
-    let ret = f();
-    (start.elapsed(), ret)
 }
