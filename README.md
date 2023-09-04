@@ -12,4 +12,4 @@ Hay tres implementaciones:
 
 - sequential: Utiliza un solo hilo de ejecución
 - concurrent: Utiliza un hilo de ejecución por cada linea de cada archivo.
-- semi-concurrent: Utiliza un hilo de ejecución por cada archivo, pero las lineas de una archivo se
+- semi-concurrent: Utiliza un hilo de ejecución por cada archivo, pero las lineas de una archivo se procesan secuencialmente.

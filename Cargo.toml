@@ -12,13 +12,14 @@ lazy_static = "1.4.0"
 rayon = "1.7.0"
 serde = { version = "1.0.188", features = ["derive"] }
 
-[[bin]]
-name = "semi-concurrent"
-path = "src/semi-concurrent.rs"
 
 [[bin]]
 name = "concurrent"
 path = "src/concurrent.rs"
+
+[[bin]]
+name = "semi-concurrent"
+path = "src/semi-concurrent.rs"
 
 [[bin]]
 name = "sequential"
