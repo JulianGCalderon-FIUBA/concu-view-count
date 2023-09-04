@@ -13,8 +13,8 @@ rayon = "1.7.0"
 serde = { version = "1.0.188", features = ["derive"] }
 
 [[bin]]
-name = "caro"
-path = "src/caro.rs"
+name = "semi-concurrent"
+path = "src/semi-concurrent.rs"
 
 [[bin]]
 name = "concurrent"
