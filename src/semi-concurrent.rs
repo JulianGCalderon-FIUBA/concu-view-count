@@ -27,6 +27,6 @@ fn parse_file(reader: Reader<File>) -> HashMap<String, usize> {
     reader
         .into_records()
         .flatten()
-        .map(Video::from)
+        .flat_map(Video::try_from)
         .fold(HashMap::new(), add_key)
 }

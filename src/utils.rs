@@ -4,7 +4,7 @@ use std::time::{Duration, Instant};
 use crate::video::Video;
 
 pub fn add_key(mut acc: HashMap<String, usize>, video: Video) -> HashMap<String, usize> {
-    let entry = acc.entry(video.channel_title).or_insert(0);
+    let entry = acc.entry(video.channel).or_insert(0);
     *entry += video.views;
     acc
 }

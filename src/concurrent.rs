@@ -13,7 +13,7 @@ fn run() -> HashMap<String, usize> {
         .flatten()
         .flat_map(|path| Reader::from_path(path))
         .flat_map(|reader| reader.into_records().par_bridge().flatten())
-        .map(Video::from)
+        .flat_map(Video::try_from)
         .fold(HashMap::new, add_key)
         .reduce(HashMap::new, merge_maps)
 }
