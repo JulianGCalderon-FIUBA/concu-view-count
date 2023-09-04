@@ -12,9 +12,7 @@ impl TryFrom<StringRecord> for Video {
 
     fn try_from(value: StringRecord) -> Result<Self, Self::Error> {
         let channel = value.get(3).ok_or("No channel title")?.to_string();
-
-        let views = value.get(7).ok_or("No views")?;
-        let views = views.parse()?;
+        let views = value.get(7).ok_or("No views")?.parse()?;
 
         Ok(Self { channel, views })
     }
