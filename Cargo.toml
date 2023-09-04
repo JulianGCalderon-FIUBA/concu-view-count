@@ -1,5 +1,5 @@
 [package]
-name = "map-reduce"
+name = "view-count"
 version = "0.1.0"
 edition = "2021"
 
@@ -11,3 +11,15 @@ glob = "0.3.1"
 lazy_static = "1.4.0"
 rayon = "1.7.0"
 serde = { version = "1.0.188", features = ["derive"] }
+
+[[bin]]
+name = "caro"
+path = "src/caro.rs"
+
+[[bin]]
+name = "concurrent"
+path = "src/concurrent.rs"
+
+[[bin]]
+name = "sequential"
+path = "src/sequential.rs"

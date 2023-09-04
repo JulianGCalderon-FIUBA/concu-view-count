@@ -1,23 +1,24 @@
 use csv::Reader;
 use glob::glob;
+use rayon::prelude::*;
 use std::collections::HashMap;
 
-use view_count::utils::{add_key, time};
+use view_count::utils::{add_key, merge_maps, time};
 use view_count::video::Video;
 
 fn run() -> HashMap<String, usize> {
     glob("data/*")
         .unwrap()
+        .par_bridge()
         .flatten()
         .flat_map(|path| Reader::from_path(path))
-        .map(|reader| reader.into_records())
-        .flatten()
-        .flatten()
+        .flat_map(|reader| reader.into_records().par_bridge().flatten())
         .map(Video::from)
-        .fold(HashMap::new(), add_key)
+        .fold(HashMap::new, add_key)
+        .reduce(HashMap::new, merge_maps)
 }
 
-fn main() {
+pub fn main() {
     let (time, ret) = time(run);
     println!("Parallel: {:?}", time);
     println!("Channels: {:?}", ret.keys().len());
