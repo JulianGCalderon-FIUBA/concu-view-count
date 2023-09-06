@@ -1,4 +1,4 @@
-# Video Count by Channel - Parallel vs Sequential
+# Video Count by Channel
 
 ## Dataset
 
